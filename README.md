@@ -23,6 +23,8 @@ Clone this repo, then install dependencies:
 pip install -r requirements.txt
 ```
 
+Then, rename .env.example to .env and set the your preferred parameters
+
 ## Running
 
 Locate API directory then run ```python run.py```
