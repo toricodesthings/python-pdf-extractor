@@ -29,6 +29,32 @@ Then, rename .env.example to .env and set the your preferred parameters
 
 Locate API directory then run ```python run.py```
 
+## 📮 POST /extract — Request & Response
+```bash
+Endpoint
+POST /extract
+Content-Type: multipart/form-data
+```
+
+Form fields (multipart)
+Field	Type	Required	Notes
+file	File (PDF)	✅	The source PDF.
+page_start	Integer (1+)	✅	1-indexed inclusive start page.
+page_end	Integer (1+)	✅	1-indexed inclusive end page (must be ≥ page_start).
+
+### Successful response
+Status: 200 OK
+Headers:
+Content-Type: application/pdf
+Content-Disposition: attachment; filename="<source>_pages_<start>-<end>.pdf"
+Body: PDF bytes (the extracted pages).
+
+### Error response
+Status: 4xx (e.g., 400 Bad Request)
+Body (JSON):
+{ "detail": "Human-readable error message" }
+
+
 🔒 Security Notes (modifable)
 - Large PDFs (> configured MB) are rejected.
 - Encrypted PDFs are blocked by default.
